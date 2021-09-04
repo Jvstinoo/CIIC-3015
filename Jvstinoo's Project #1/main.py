@@ -1,40 +1,22 @@
-'''Project Breakout:
-First, ask user for account name and balance.
-Enter main loop, show name, balance and a few options:
-1) Deposit some funds,
-2) Withdraw some funds,
-3) Quit.
+'''Ideas to optimize project: 
 
-For option 1 and 2, ask user for amount they want to deposit or withdraw.
+strip the inputs
+lowercase/uppercase
+if input is only number, dont throw error just repeat the process or show message saying:
+    Input needs to be a number.
+    Something like that
 
-For now, I'll start by doing these.
-
-options = {'1) Deposit funds into account': '1', '2) Withdraw funds from account': '2', '3) Quit.':'3'}
-
-Idea: Do three loops, for each of the options and just run through them depending on the choice of user...
-
-Strip input or lowercase, uppercase; all things like that. If not number, repeat shit like that
-
-if(selection == '2'):
-        withdraw = float(input('Amount you wish to withdraw: '))
-        if(withdraw > balance):
-            print('Insufficient funds. For your convenience, an overdraft fee of $5 is being deducted from your balance. Have a nice day!!')
-            balance -= 5
-            print(nums)
-        selection = input('Please enter your selection: ')
 '''
 name = input('Please enter the name for your account: ')
-balance = float(input('Please enter your starting balance: '))
+balance = int(input('Please enter your starting balance: '))
 
-n_deposits = 0
-n_withdrawals = 0
-bad_withdrawals = 0
-fees = 0
+# Counter to keep track of the deposits and withdrawals
+n_deposits, n_withdrawals, bad_withdrawals, fees = 0, 0, 0, 0
 
-d_total = 0
-w_total = 0
-bw_total = 0
-f_total = 0
+# Counter to keep track of the amount of transactions of each
+d_total, w_total, bw_total, f_total = 0, 0, 0, 0
+
+# Menu in array so I dont have to repeat, just loop through it
 
 
 def menu():
@@ -43,6 +25,8 @@ def menu():
                '2) Withdraw funds from account', '3) Quit.']
     for choices in options:
         print(choices)
+
+# Final statement in array so I can loop through it
 
 
 def final_statement():
@@ -53,6 +37,7 @@ def final_statement():
         print(options)
 
 
+# Main loop
 while(name and balance):
     menu()
     selection = input('Please enter your selection: ')
@@ -64,7 +49,7 @@ while(name and balance):
 
     elif(selection == '2'):
         withdraw = float(input('Amount you wish to withdraw: '))
-        if(withdraw > balance):
+        if(withdraw >= balance):
             print('Insufficient funds. An overdraft fee of $5 is being deducted from your balance. \nHave a nice day!!')
             balance -= 5
             fees += 1
@@ -72,7 +57,7 @@ while(name and balance):
             bw_total += withdraw
             f_total += 5
 
-        elif(withdraw <= balance):
+        if(withdraw <= balance):
             balance -= withdraw
             n_withdrawals += 1
             w_total += withdraw
