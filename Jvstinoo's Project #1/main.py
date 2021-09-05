@@ -7,8 +7,18 @@ if input is only number, dont throw error just repeat the process or show messag
     Something like that
 
 '''
-name = input('Please enter the name for your account: ')
-balance = int(input('Please enter your starting balance: '))
+import os
+import time
+width = os.get_terminal_size().columns
+
+print("Welcome to JB Bank!!!\n".center(width))
+time.sleep(1.5)
+print('To create an account please fill out the following:\n')
+time.sleep(0.8)
+
+
+name = input('Enter the name for your account: ')
+balance = float(input('Enter your starting balance: '))
 
 # Counter to keep track of the deposits and withdrawals
 n_deposits, n_withdrawals, bad_withdrawals, fees = 0, 0, 0, 0
@@ -21,8 +31,8 @@ d_total, w_total, bw_total, f_total = 0, 0, 0, 0
 
 def menu():
     global balance
-    options = ['Account name: ' + name, 'Account balance: $' + str(balance), 'You may: ', '1) Deposit funds into account',
-               '2) Withdraw funds from account', '3) Quit.']
+    options = ['\nAccount name: ' + name, 'Account balance: $' + str(balance), 'You may: ', '1) Deposit funds into account (1/d)',
+               '2) Withdraw funds from account (2/w)', '3) Quit. (3/q)']
     for choices in options:
         print(choices)
 
@@ -31,7 +41,7 @@ def menu():
 
 def final_statement():
     global balance
-    quit = ['Final Statement', 'Account name: ' + name, 'Account balance: $' + str(balance), str(n_deposits) + ' deposits totaling $' + str(d_total), str(
+    quit = ['\nFinal Statement:', 'Account name: ' + name, 'Account balance: $' + str(balance), str(n_deposits) + ' deposits totaling $' + str(d_total), str(
         n_withdrawals)+' withdrawals totaling $' + str(w_total), str(bad_withdrawals) + ' bad withdrawals totaling $' + str(bw_total), str(fees) + ' fees totaling $' + str(f_total)]
     for options in quit:
         print(options)
@@ -49,15 +59,15 @@ while(name and balance):
 
     elif(selection == '2'):
         withdraw = float(input('Amount you wish to withdraw: '))
-        if(withdraw >= balance):
-            print('Insufficient funds. An overdraft fee of $5 is being deducted from your balance. \nHave a nice day!!')
+        if(withdraw > balance):
+            print('\nInsufficient funds. An overdraft fee of $5 is being deducted from your balance. \nHave a nice day!!')
             balance -= 5
             fees += 1
             bad_withdrawals += 1
             bw_total += withdraw
             f_total += 5
 
-        if(withdraw <= balance):
+        elif(withdraw <= balance):
             balance -= withdraw
             n_withdrawals += 1
             w_total += withdraw
