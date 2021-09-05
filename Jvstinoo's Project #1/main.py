@@ -7,6 +7,8 @@ if input is only number, dont throw error just repeat the process or show messag
     Something like that
 
 '''
+# Project by Justin Balbuena (CIIC3015-096)
+
 import os
 import time
 width = os.get_terminal_size().columns
