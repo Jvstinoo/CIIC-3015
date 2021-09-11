@@ -18,7 +18,6 @@ time.sleep(1.5)
 print('To create an account please fill out the following:\n')
 time.sleep(0.8)
 
-
 name = input('Enter the name for your account: ')
 balance = float(input('Enter your starting balance: '))
 
@@ -53,7 +52,7 @@ def final_statement():
 while(name and balance):
     menu()
     selection = input('Please enter your selection: ')
-    if(selection == '1'):
+    if(selection == '1' | 'd'):
         deposit = float(input('Amount you wish to deposit: '))
         balance += deposit
         d_total += deposit
