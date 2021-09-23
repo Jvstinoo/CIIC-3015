@@ -9,3 +9,6 @@ def Collatz(n):
         times += 1         # Finally add 1 if any of the above get completed
 
     return times
+
+
+print(Collatz(4))

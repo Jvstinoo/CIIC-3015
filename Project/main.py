@@ -49,8 +49,7 @@ while(name and balance >= 0):
     if(selection == '1') or (selection == 'd'):
         while True:
             try:
-                deposit = round(
-                    float(input('Amount you wish to deposit: ')), 2)
+                deposit = float(input('Amount you wish to deposit: '))
                 round_balance += deposit
                 d_total += deposit
                 n_deposits += 1
@@ -59,7 +58,7 @@ while(name and balance >= 0):
                 print('Can only deposit money!!!')
 
     elif(selection == '2') or (selection == 'w'):
-        withdraw = round(float(input('Amount you wish to withdraw: ')), 2)
+        withdraw = float(input('Amount you wish to withdraw: '))
         if(withdraw <= balance):
             round_balance -= withdraw
             n_withdrawals += 1
