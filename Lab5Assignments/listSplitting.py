@@ -24,12 +24,8 @@ If you decide to keep the value, don't forget to append the element at the curre
 
 def remove_value(int_list, remove, times):
     result = []
-    while(times > 0):
-        for ints in int_list:
-            if(ints != remove and times > remove):
-                result.append(ints)
 
-    return result
+    removed = 0
 
 
 print(remove_value([1, 4, 3, 6, 4, 3, 2, 4, 8, 11], 4, 2))
