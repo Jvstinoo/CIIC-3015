@@ -20,12 +20,16 @@ to account for the 3rd parameter (Think about where you want to keep track of th
 
 If you decide to keep the value, don't forget to append the element at the current index to result.
 '''
-
-
 def remove_value(int_list, remove, times):
-    result = []
-
-    removed = 0
+  result = []
+  out = 0
+  for i in int_list:
+    if i == remove and out < times:
+      out+=1
+      continue
+    else:
+      result.append(i)
+  return result
 
 
 print(remove_value([1, 4, 3, 6, 4, 3, 2, 4, 8, 11], 4, 2))
