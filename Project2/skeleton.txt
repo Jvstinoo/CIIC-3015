@@ -1,0 +1,71 @@
+# CIIC 3015 Autumn 2021 Project 2 Skeleton
+# Anyone may use this code for any purpose whatsoever.
+
+def Project2():
+	CMD_BED = 'b'
+	CMD_CLOSE = 'c'
+	CMD_EAST = 'e'
+	CMD_FEED = 'f'
+	CMD_GET = 'g'
+	CMD_LOCK = 'l'
+	CMD_NORTH = 'n'
+	CMD_OPEN = 'o'
+	CMD_PUT = 'p'
+	CMD_QUIT = 'q'
+	CMD_SOUTH = 's'
+	CMD_TV = 't'
+	CMD_UNLOCK = 'u'
+	CMD_WEST = 'w'
+
+	ROOM_FRONT = 0
+	ROOM_LIVING = 1
+	ROOM_KITCHEN = 2
+	ROOM_OFFICE = 3
+	ROOM_BED = 4
+
+	ROOM_NAMES = ("Front Door", "Living Room", "Kitchen", "Office", "Bedroom")
+
+	flag_me_awake = True
+	flag_tv_on = False
+
+	room = 0
+	turn = 0
+
+	print("What an awful day! You are completely exhausted, all you want to do is climb into bed and collapse. Unfortunately, that is easier said than done…")
+	print()
+	print("CIIC 3015 Autumn 2021 Project 2: Time For Go-To-Bed")
+	print()
+
+	while flag_me_awake:
+		print("Location: ", ROOM_NAMES[room])
+		cmd = input("> ")
+		turn += 1
+
+		if cmd == CMD_QUIT:
+			return False
+
+		if room == ROOM_FRONT:
+			if cmd == CMD_EAST:
+				print("You enter your house.")
+				room = ROOM_LIVING
+				continue
+	
+		if room == ROOM_LIVING:
+			if cmd == CMD_TV:
+				if flag_tv_on:
+					print("You turn off the tv.")
+				else:
+					print("You turn on the tv.")
+				flag_tv_on = not flag_tv_on
+				continue
+
+			if cmd == CMD_WEST:
+				print("You are way too tired to face the world again just now. Best to remain indoors.")
+				continue
+
+		print("Illegal command.")
+
+	print(turn, "turns played.")
+	return True
+
+Project2()

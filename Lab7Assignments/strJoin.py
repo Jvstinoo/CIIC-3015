@@ -5,13 +5,17 @@
 
 
 def StrJoin(n, z):
-    result = ''
-    out = 0
+    out = ''
+    stop = len(z)-1
 
-    for i in z[:]:
-        z[out] += n
-        out += 1
-    return z
+    for i in z:
+        if stop > 0:
+            out += (i+n)
+            stop -= 1
+    out += z[-1]
+
+    return out, stop
 
 
 print(StrJoin('+', 'spam'))
+print(StrJoin(' spam ', ['1', '2', '3', '4', '5']))
