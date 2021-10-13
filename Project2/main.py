@@ -1,91 +1,202 @@
 def Project2():
+    asleep = False
+    fed = False
+    pantry = False
+    flag_tv = False
+    safe = False
+    key = False
+    pantry_opened = False
+    bone = False
+    spam = True
+    get = 'g'
+    open = 'o'
+    unlock = 'u'
+    lock = 'l'
     bed = 'b'
     close = 'c'
-    east = 'e'
-    feed = 'f'
-    get = 'g'
-    lock = 'l'
-    north = 'n'
-    open = 'o'
     put = 'p'
-    quit = 'q'
-    south = 's'
     tv = 't'
-    unlock = 'u'
+    quit = 'q'
+    feed = 'f'
+    north = 'n'
+    south = 's'
+    east = 'e'
     west = 'w'
-
-    cnt_room = 0
-    front_door = 0
-    living_room = 1
-    bedroom = 2
-    office = 3
-    kitchen = 4
-
     turns = 0
 
     rooms = ['Front Door', 'Living Room', 'Bedroom', 'Office', 'Kitchen']
-    tv, pantry, office, asleep, bone, safe, key, fed = False, False, False, False, False, False, False, False
-    print('What an awful day! You are completely exhausted, all you want to do is climb into bed and collapse... \nCIIC 3015 Autumn 2021 Project 2: The Quest for Sleep\n')
+
+    cnt_room = 0
+    f_room = 0
+    l_room = 1
+    b_room = 2
+    o_room = 3
+    k_room = 4
 
     while not asleep:
-        print('Current Location:', rooms[cnt_room])
-        selection = input('> ')
+        print('Location:', rooms[cnt_room])
+        inp = input('> ')
+        turns += 1
 
-        if selection == east and cnt_room == front_door:
-            print('Home, sweet home! You enter your house. \nYou enter the living room.')
-            cnt_room = living_room
-            turns += 1
-
-        elif selection == north and cnt_room == living_room:
-            if not fed:
-                print('Stella refuses to move out of your way. You shall not pass!')
-
-        elif selection == east and cnt_room == living_room:
-            print('You enter the office. \nThe safe is closed.')
-            cnt_room = office
-            turns += 1
-            continue
-
-        elif selection == open and cnt_room == office:
-            print('Please enter the combination to the safe, one number at a time. \nYou remember that it is the next three numbers in the Collatz sequence after 42.')
-            turns += 1
-            num1 = int(input('First number? '))
-            if num1 == 21:
-                num2 = int(input('Second number? '))
-            else:
-                print("Nope that's not it.")
-                continue
-            if num2 == 64:
-                num3 = int(input('Third number? '))
-            else:
-                print("Nope that's not it.")
-                continue
-            if num3 == 32:
-                print(
-                    'You hear a satisfying sound as the door to the safe slowly opens. \nInside you see the pantry door key.')
-                safe == True
-            else:
-                print("Nope, that's not it")
-                continue
-        elif selection == get and cnt_room == office and safe == True:
-            print('You remove the pantry door key from the safe.')
-            key == True
-        elif selection == west and cnt_room == office:
-            cnt_room = living_room
-
-        elif selection == south and cnt_room == living_room:
-            print('You enter the kitchen. \nThe pantry is closed.')
-            cnt_room = kitchen
-            turns += 1
-
-        if selection == open and cnt_room == kitchen:
-            print("The pantry door is closed. It won't open.")
-            turns += 1
-
-        elif selection == quit:
+        if inp == quit:
             return False
-    print("Sleep! At last! You win!")
-    print(turns, 'turns played')
+
+        if cnt_room == f_room:
+            if inp == east:
+                print(
+                    'Home, sweet home! You enter your house. \nYou enter the living room.')
+                cnt_room = l_room
+                continue
+
+        if cnt_room == l_room:
+            if inp == east:
+                cnt_room = o_room
+            if inp == north:
+                if not fed:
+                    print('Stella refuses to move out of your way. You shall not pass!')
+                    continue
+                else:
+                    print("Stella is happily chewing on her nice tasy bone and completely ignores you as you walk into the bedroom. \nYou see a can of lovely spam. Wait, what's that doing in the bedroom? ")
+                    cnt_room = b_room
+                continue
+            if inp == south:
+                print('You enter the kitchen.')
+                if not pantry:
+                    print('The pantry door is closed.')
+                else:
+                    print('The pantry door is open.')
+                cnt_room = k_room
+                continue
+            if inp == tv and flag_tv == False:
+                print('You turn on the tv.')
+                flag_tv = True
+                continue
+            if inp == tv and flag_tv == True:
+                print('You turn off the tv.')
+                flag_tv = False
+                continue
+            if inp == feed and bone == True:
+                if flag_tv == True:
+                    print('Stella hungrily snatches the nice tasty bone out of your hand and starts to chew on it. She no longer seems to notice or care that you are here.')
+                    fed = True
+                else:
+                    print('Stella seems tense. She keeps glancing from the bone in your hand, to the silent tv, to you, and back to the silent tv again. Every now and then she makes a sad little noise.')
+                continue
+
+        if cnt_room == b_room:
+            if inp == bed:
+                if flag_tv:
+                    print('The noise from the tv keeps you awake. ')
+                if pantry_opened and not flag_tv:
+                    print(
+                        'You keep thinking about that open pantry door and your OCD stresses you out too much to sleep.')
+                    continue
+                if pantry and not flag_tv:
+                    print(
+                        'Wait...did you leave the pantry door unlocked? Better go check.')
+                    continue
+                if key and not pantry:
+                    print(
+                        'The pantry in your pocket keeps digging into your leg. Best put it back.')
+                    continue
+                if safe and not key:
+                    print("You're pretty sure you forgot to close the safe.")
+                    continue
+
+                if spam and not pantry:
+                    print(
+                        "You should really put that can of lovely spam away in the pantry first.")
+                    continue
+                else:
+                    asleep = True
+            if inp == get:
+                print("You grab the can of lovely spam.")
+                spam = True
+                continue
+            if inp == south:
+                cnt_room = l_room
+                continue
+
+        if cnt_room == o_room:
+            if inp == west:
+                cnt_room = l_room
+                continue
+            if inp == get and safe:
+                print('You remove the pantry door key from the safe.')
+                key = True
+                continue
+            print('You enter your office.')
+            if not safe:
+                print('The office safe is closed.')
+            else:
+                print('The office safe is open.')
+            if inp == open and not safe:
+                print('Please enter the combination to the safe, one number at a time. You remember that it is the next three numbers in the Collatz sequence after 42')
+                num1 = int(input('First number? '))
+                if num1 == 21:
+                    num2 = int(input('Second number? '))
+                    if num2 == 64:
+                        num3 = int(input('Third number? '))
+                        if num3 == 32:
+                            print(
+                                "You hear a satisfying 'Ka-CHUNK' as the handle turns and the safe door swings invitingly open. \nInside you see the pantry door key")
+                            safe = True
+                else:
+                    print("Nope. that's not it. The locked safe silently mocks you.")
+            if inp == put:
+                if key and safe:
+                    print('You put the pantry door key into the safe.')
+                    key = False
+                    continue
+            if inp == close and safe:
+                print('You close the safe and spin the dial a few times to reset it.')
+                safe = False
+                continue
+
+        if cnt_room == k_room:
+            if inp == north:
+                print('You enter the living room.')
+                if not flag_tv:
+                    print('The tv is off')
+                if not fed:
+                    print('Stella is here, looking hungry and disappointed.')
+                else:
+                    print('The tv is on and Stella is eating her bone.')
+                cnt_room = l_room
+                continue
+            if inp == unlock:
+                if not key:
+                    print("The pantry door is closed. It won't open")
+                else:
+                    print('You unlock the pantry door.')
+                    pantry = True
+                continue
+            if inp == open and pantry == True:
+                print('The pantry door opens. \nInside you see a nice tasty bone.')
+                pantry_opened = True
+                continue
+            if inp == get and pantry_opened:
+                print(
+                    'You take the nice tasty bone out of the pantry. Stella watches you with great interest from the living room.')
+                bone = True
+                continue
+            if inp == close:
+                if pantry:
+                    print('The pantry door closes.')
+                    pantry_opened = False
+                continue
+            if inp == lock:
+                if pantry_opened == False and key:
+                    print('You lock the pantry door.')
+                    pantry = False
+            if inp == put and pantry_opened:
+                if spam:
+                    print(
+                        'You put the can of lovely spam into the pantry where it belongs.')
+                    spam = False
+                    continue
+
+    print('You have won in', turns, 'turns')
 
 
 Project2()
