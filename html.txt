@@ -1,0 +1,13 @@
+<head>
+   <title>HTML Resources</title>
+   <style>
+      body {
+         background-color: #EAEADE;
+         margin: 1em 120px;
+      }
+      input:focus, textarea:focus { background-color: #F3F781 }
+   </style>
+   <script src="js/html101.js"></script>
+</head>
+<body>
+    <header>

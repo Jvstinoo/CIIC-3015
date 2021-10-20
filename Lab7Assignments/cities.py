@@ -10,7 +10,7 @@ Your program should print the shortest and longest city names.
 Note: You should NOT assume that the cities will be cities in Puerto Rico.  You are not interested in the number, only in the names of the cities.
 
 Hint: Remember that a comma is what separates the distance from the city's name.'''
-import re
+
 fname = input('Enter file name: ')
 fhand = open(fname)
 
@@ -18,12 +18,10 @@ cities = []
 result = ''
 
 for line in fhand:
-    words = line.split(', ')
-    n = words[1].split('\n')
-    cities.append(n[0])
+    words = cities.append(line.split(", ")[1][:-1])
 
 
 print('Shortest city is', min(cities, key=len))
 print('Longest city is', max(cities, key=len))
-
+print(cities)
 fhand.close()

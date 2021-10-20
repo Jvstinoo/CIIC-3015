@@ -5,3 +5,7 @@ def ListCount(z, n):
         if(i == n):
             out += 1
     return out
+
+
+print(ListCount([1, 2, 3], 3))
+print(ListCount([], 2))

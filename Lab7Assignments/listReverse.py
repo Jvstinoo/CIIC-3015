@@ -1,8 +1,8 @@
 def ListReverse(ls):
-    for i in ls[::-1]:
+    '''for i in ls[::-1]:
         ls.append(i)
         ls.remove(i)
-    return ls
+    return ls'''
 
 
 print(ListReverse([1, 2, 3]))
