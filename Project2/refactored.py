@@ -31,6 +31,9 @@ def Project2():
         inp = input('> ')
         turns += 1
 
+        if inp not in inputs.values():
+            print('Invalid choice :(')
+
         if inp == inputs['quit'] and not bools['asleep']:
             return False
 
@@ -44,17 +47,24 @@ def Project2():
 
         if cnt_room == l_room:
             if inp == inputs['east']:
+                print('You enter your office.')
+                if not bools['safe']:
+                    print('The office safe is closed.')
+                else:
+                    print('The office safe is open.')
                 cnt_room = o_room
+                continue
             if inp == inputs['north']:
                 if not bools['fed']:
                     print('Stella refuses to move out of your way. You shall not pass!')
                     continue
-                if bools['fed'] and bools['spam']:
-                    print("Stella is happily chewing on her nice tasy bone and completely ignores you as you walk into the bedroom. \nYou see a can of lovely spam. Wait, what's that doing in the bedroom? ")
+                if bools['fed'] and not bools['spam']:
+                    print("Stella is happily chewing on her nice tasty bone and completely ignores you as you walk into the bedroom. \nYou see a can of lovely spam. Wait, what's that doing in the bedroom? ")
                     cnt_room = b_room
+                    continue
                 if bools['fed'] and not bools['spam']:
                     cnt_room = b_room
-                continue
+                    continue
             if inp == inputs['south']:
                 print('You enter the kitchen.')
                 if not bools['pantry']:
@@ -71,12 +81,15 @@ def Project2():
                 print('You turn off the tv.')
                 bools['flag_tv'] = False
                 continue
-            if inp == inputs['feed'] and bools['bone'] == True:
+            if inp == inputs['feed'] and bools['bone'] and not bools['fed']:
                 if bools['flag_tv'] == True:
                     print('Stella hungrily snatches the nice tasty bone out of your hand and starts to chew on it. She no longer seems to notice or care that you are here.')
                     bools['fed'] = True
                 else:
                     print('Stella seems tense. She keeps glancing from the bone in your hand, to the silent tv, to you, and back to the silent tv again. Every now and then she makes a sad little noise.')
+                continue
+            if inp == inputs['west']:
+                print('You are not ready to go outside still :(')
                 continue
 
         if cnt_room == b_room:
@@ -125,12 +138,7 @@ def Project2():
                 print('You remove the pantry door key from the safe.')
                 bools['key'] = True
                 continue
-            print('You enter your office.')
-            if not bools['safe']:
-                print('The office safe is closed.')
-            else:
-                print('The office safe is open.')
-            if inp == open and not bools['safe']:
+            if inp == inputs['open'] and not bools['safe']:
                 print('Please enter the combination to the safe, one number at a time. You remember that it is the next three numbers in the Collatz sequence after 42')
                 num1 = int(input('First number? '))
                 if num1 == 21:
@@ -165,7 +173,7 @@ def Project2():
                     print('You unlock the pantry door.')
                     bools['pantry'] = True
                 continue
-            if inp == open and bools['pantry'] == True:
+            if inp == inputs['open'] and bools['pantry'] == True:
                 print('The pantry door opens. \nInside you see a nice tasty bone.')
                 bools['pantry_opened'] = True
                 continue
