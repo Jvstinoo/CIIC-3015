@@ -1,10 +1,13 @@
 def AlmostMin(container):
-    smallest = None
+    ls = list(set(container[:]))
+    ls.remove(min(ls))
 
-    for i in range(len(container)):
-        if container[i] < container[i+1]:
-            smallest = container[i]
-    return smallest
+    if len(ls) > 1:
+        return min(ls)
+    return None
 
 
-print(AlmostMin((2, 2, 4, 4, 4)))
+print(AlmostMin(('spam', 'spam', 'spam', 'eggs', 'bacon', 'spam')))
+print(AlmostMin(range(30, 0, -1)))
+
+print(AlmostMin([1, 1, 1, 1, 1, 1, 1, 1]))
