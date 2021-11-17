@@ -1,0 +1,6 @@
+CIIC4015:s121,8:00 am,Velez
+INSO4020:s113,9:00 am,Balaguera
+CIIC3015:s114,15:30 pm,Sierra
+CIIC4035:s121,10:00 am,Rodriguez
+INSO4035:s121,12:00 pm,Rivera
+CIIC5011:s201,17:00 pm,Arzuaga
