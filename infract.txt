@@ -1,0 +1,8 @@
+1:Adjuntas, Luis Perez, 
+1:Mayaguez, Carlos Torres
+3:Aguadilla, Juan del Pueblo
+1:Aguas Buenas, Rosa Melendez
+1:Aibonito, Luis Perez  
+3:Arroyo, Luisa Mar
+2:Barceloneta, Juan del Pueblo
+7:Trujillo Alto, Carlos Torres

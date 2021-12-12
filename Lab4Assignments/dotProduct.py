@@ -12,13 +12,16 @@ Also: We want you to roll your own loops here. Do not import a module like numpy
 
 
 def Dot(l1, l2):
-    sum = 0
+    '''sum = 0
     out = 0
     while out < len(l1):
         mult = l1[out] * l2[out]
         sum += mult
         out += 1
     return float(sum)
+'''
+
+    return sum()
 
 
 print(Dot([1, 0, 2, 0, 3, 0], [0, 1, 0, 2, 1, 3]))

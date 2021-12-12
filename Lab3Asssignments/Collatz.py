@@ -1,4 +1,4 @@
-def Collatz(n):
+'''def Collatz(n):
     times = 0              # Counter to keep track of the times n // or *
     while n > 1:
         if(n % 2 == 0):    # Check if n is divisible by 2
@@ -12,3 +12,20 @@ def Collatz(n):
 
 
 print(Collatz(4))
+'''
+
+
+def Collatz(n):
+    loops = 0
+    while n != 1:
+        loops += 1
+        if (n % 2) == 0:
+            n //= 2
+            continue
+        else:
+            n = n*3+1
+            continue
+    return loops
+
+
+print(Collatz(931386509544713451))

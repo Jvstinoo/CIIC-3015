@@ -6,11 +6,13 @@ be of any type. Two sequential values (a,b) are defined to be in sorted order if
 
 
 def IsSorted(list):
-    sorted = list[:]
+    '''sorted = list[:]
     sorted.sort()
     if(sorted == list):
         return True
     return False
+'''
+    return (list == sorted(list))
 
 
 print(IsSorted(['bacon', 'eggs', 'spam', 'spam', 'spam', 'spam', 'spam']))
